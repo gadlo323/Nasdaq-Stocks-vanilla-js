@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Roboto+Condensed&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  /* 1rem === 10px */
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+  background-image: url("img/4003374.jpg");
+  background-position: center;
+  background-size: cover;
+  /* font-family: 'Roboto Condensed', sans-serif; */
+}
+/* setting */
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  padding: 1rem;
+}
+.container {
+  width: 100%;
+  min-height: 100vh;
+}
+.card {
+  font-size: 2rem;
+  color: aliceblue;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.card-img-top {
+  width: 10%;
+  border-radius: 100%;
+}
+.card-title {
+  font-size: 3rem;
+  color: #cc14cc;
+}
+.card-text small {
+  font-size: 3rem;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sector {
+  font-size: 3rem;
+  color: #fed86b;
+}
+.wabCompany {
+  text-decoration: none;
+  color: #cc14cc;
+}
+.price-green {
+  color: #2cde6d !important;
+}
+.price-red {
+  color: #d94032 !important;
+}
+#myChart {
+  padding: 2rem 0rem;
+  cursor: pointer;
+}
+.spinner-border {
+  position: absolute;
+  top: 55%;
+  padding: 5rem;
+  font-size: 5rem;
+  color: white;
+}
+.active {
+  display: none;
+}

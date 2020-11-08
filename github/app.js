@@ -33,7 +33,10 @@ function setResult(arr) {
       const li = document.createElement("li");
       const aTag = document.createElement("a");
       aTag.innerHTML = `${item.name}(${item.symbol})`;
-      aTag.setAttribute("href", `/company.html?symbol=${item.symbol}`);
+      aTag.setAttribute(
+        "href",
+        `/js-project-2-gadlo323/github/company.html?symbol=${item.symbol}`
+      );
       li.appendChild(aTag);
       li.classList.add("list-group-item-action");
       result.appendChild(li);
