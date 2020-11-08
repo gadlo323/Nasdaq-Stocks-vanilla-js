@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Roboto+Condensed&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  /* 1rem === 10px */
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-family: 'Roboto Condensed', sans-serif; */
+}
+/* setting */
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  padding: 1rem;
+}
+.content {
+  padding: 2rem;
+}
+.search-fiald {
+  width: 35%;
+  padding: 0.2rem 1rem;
+  font-size: 2rem;
+  border: none;
+  border-bottom: 2px solid #bd3b70;
+  outline: none;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.search-fiald:focus {
+  border-bottom: 4px solid #cc14cc;
+}
+
+#btn-serach {
+  padding: 0.6rem 3.7rem;
+  font-size: 2rem;
+  background-color: #bd3b70;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  outline: none;
+}
+#btn-serach:hover {
+  background-color: #cc14cc;
+}
+.result {
+  position: relative;
+  min-height: 100vh;
+}
+.spinner-border {
+  position: absolute;
+  top: 20%;
+  padding: 5rem;
+  font-size: 10rem;
+  color: #cc14cc;
+}
+.active {
+  display: none;
+}
+
+.list-group {
+  font-size: 1.8rem;
+}
+.list-group li {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+.list-group li > a {
+  text-decoration: none;
+  color: #bd3b70;
+}
+.list-group li:hover a {
+  font-size: 1.9rem;
+  color: #cc14cc;
+}
+.img-side {
+  width: 100%;
+}
+
+@media (max-width: 80rem) {
+  .search-fiald {
+    width: 70%;
+  }
+  .list-group {
+    font-size: 1.8rem;
+  }
+  .list-group li:hover a {
+    font-size: 1.8rem;
+  }
+  .result-list {
+    text-align: center;
+  }
+}
