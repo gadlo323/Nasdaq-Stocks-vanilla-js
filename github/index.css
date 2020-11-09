@@ -53,7 +53,7 @@ a {
   outline: none;
 }
 #btn-serach:hover {
-  background-color: #cc14cc;
+  background-color: #bd3b70;
 }
 .result {
   position: relative;
@@ -71,7 +71,7 @@ a {
 }
 
 .list-group {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 .list-group li {
   padding: 1rem;
@@ -82,11 +82,38 @@ a {
   color: #bd3b70;
 }
 .list-group li:hover a {
-  font-size: 1.9rem;
+  font-size: 1.67rem;
   color: #cc14cc;
 }
 .img-side {
   width: 100%;
+}
+.price-green {
+  color: #2cde6d !important;
+}
+.price-red {
+  color: #ff0044 !important;
+}
+.footer {
+  min-height: 10vh;
+  background-color: #a95ce4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list-group-item-action img {
+  width: 40px;
+  border-radius: 100%;
+}
+.links {
+  font-size: 3rem;
+}
+.links li i {
+  color: black;
+}
+.symbol {
+  color: #ac86b7;
+  font-weight: 700;
 }
 
 @media (max-width: 80rem) {
@@ -101,5 +128,8 @@ a {
   }
   .result-list {
     text-align: center;
+  }
+  .links li span {
+    display: none;
   }
 }

@@ -3,6 +3,20 @@ const searchVal = document.querySelector(".search-fiald");
 const form = document.querySelector("#getNasdaq");
 const spinar = document.querySelector(".spinner-border");
 
+let company = async (parmSymbol) => {
+  try {
+    const response = await fetch(
+      `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${parmSymbol}`
+    );
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 let serach = async (quary) => {
   try {
     const response = await fetch(
@@ -27,20 +41,24 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-function setResult(arr) {
+//show list to user
+async function setResult(arr) {
+  let newarr = [];
   if (arr.length > 0) {
-    arr.forEach((item) => {
-      const li = document.createElement("li");
-      const aTag = document.createElement("a");
-      aTag.innerHTML = `${item.name}(${item.symbol})`;
-      aTag.setAttribute(
-        "href",
-        `/js-project-2-gadlo323/github/company.html?symbol=${item.symbol}`
-      );
-      li.appendChild(aTag);
-      li.classList.add("list-group-item-action");
-      result.appendChild(li);
+    for (let item of arr) {
+      const compData = await company(item.symbol);
+      if (Object.keys(compData).length != 0) {
+        newarr.push(setElment(compData));
+      }
+    }
+    newarr.forEach((item) => {
+      result.appendChild(item);
     });
+  } else {
+    result.innerHTML += `
+    <li class="list-group-item-action">
+    No results found &#129335; !
+    </li>`;
   }
   Spinar();
 }
@@ -48,4 +66,35 @@ function setResult(arr) {
 //on or off spinar
 function Spinar() {
   spinar.classList.toggle("active");
+}
+
+//set the price color by the percent
+function cheackPrice(Percent, element) {
+  if (Percent) {
+    Percent.includes("+")
+      ? element.classList.add("price-green")
+      : element.classList.add("price-red");
+  } else {
+    element.style.display = "none";
+  }
+}
+//create elemenr li forEach result option
+function setElment(compData) {
+  const li = document.createElement("li");
+  const aTag = document.createElement("a");
+  const compImage = document.createElement("img");
+  const spanTag = document.createElement("span");
+
+  compImage.src = compData.profile.image;
+  compImage.alt = `${compData.profile.companyName} Logo`;
+  cheackPrice(compData.profile.changesPercentage, spanTag);
+  spanTag.innerHTML = `${compData.profile.changesPercentage}`;
+  aTag.innerHTML = `${compData.profile.companyName} <strong class="symbol">${compData.symbol}</strong>`;
+  aTag.setAttribute("href", `./company.html?symbol=${compData.symbol}`);
+  li.appendChild(compImage);
+  li.appendChild(aTag);
+  li.appendChild(spanTag);
+  li.classList.add("list-group-item-action");
+  // result.appendChild(li);
+  return li;
 }

@@ -1,3 +1,4 @@
+const title = document.querySelector("title");
 const imgtop = document.querySelector(".card-img-top");
 const cardTitle = document.querySelector(".card-title");
 const price = document.querySelector(".price");
@@ -25,7 +26,6 @@ let company = async () => {
     if (response.ok) {
       const data = await response.json();
       setData(data);
-      console.log(data);
     }
   } catch (err) {
     console.log(err);
@@ -40,7 +40,6 @@ let stockHistory = async () => {
     if (response.ok) {
       const data = await response.json();
       setChart(data.historical);
-      console.log(data);
     }
   } catch (err) {
     console.log(err);
@@ -48,6 +47,7 @@ let stockHistory = async () => {
 };
 
 let parmSymbol = getUrlParameter("symbol");
+title.innerHTML += parmSymbol;
 company();
 
 function setData(obj) {
