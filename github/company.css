@@ -81,3 +81,12 @@ a {
 .active {
   display: none;
 }
+
+@media (max-width: 80rem) {
+  .card-title {
+    font-size: 2rem;
+  }
+  .ceo {
+    display: none;
+  }
+}

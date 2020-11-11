@@ -16,6 +16,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #131c20;
+  overflow-x: hidden;
+  color: white;
   /* font-family: 'Roboto Condensed', sans-serif; */
 }
 /* setting */
@@ -28,18 +31,22 @@ a {
 }
 .content {
   padding: 2rem;
+  margin-top: 6rem;
 }
 .search-fiald {
   width: 35%;
   padding: 0.2rem 1rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   border: none;
   border-bottom: 2px solid #bd3b70;
+  background-color: transparent;
   outline: none;
+  color: rgb(117, 112, 112);
   font-family: "Roboto Condensed", sans-serif;
 }
 .search-fiald:focus {
   border-bottom: 4px solid #cc14cc;
+  color: white;
 }
 
 #btn-serach {
@@ -53,7 +60,7 @@ a {
   outline: none;
 }
 #btn-serach:hover {
-  background-color: #bd3b70;
+  background-color: #cc14cc;
 }
 .result {
   position: relative;
@@ -62,7 +69,7 @@ a {
 .spinner-border {
   position: absolute;
   top: 20%;
-  padding: 5rem;
+  padding: 2.5rem;
   font-size: 10rem;
   color: #cc14cc;
 }
@@ -71,20 +78,37 @@ a {
 }
 
 .list-group {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
 }
 .list-group li {
   padding: 1rem;
   margin-bottom: 0.5rem;
+}
+.list-group li:hover {
+  background-color: #131c25;
 }
 .list-group li > a {
   text-decoration: none;
   color: #bd3b70;
 }
 .list-group li:hover a {
-  font-size: 1.67rem;
+  font-size: 1.98rem;
   color: #cc14cc;
 }
+.right-side {
+  text-align: center;
+}
+.right-side h1 {
+  font-size: 4rem;
+  color: #cc14cc;
+}
+.right-side em {
+  font-size: 2rem;
+}
+.right-side small {
+  font-size: 2rem;
+}
+
 .img-side {
   width: 100%;
 }
@@ -96,7 +120,7 @@ a {
 }
 .footer {
   min-height: 10vh;
-  background-color: #a95ce4;
+  background-color: #131c19;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,16 +133,39 @@ a {
   font-size: 3rem;
 }
 .links li i {
-  color: black;
+  color: white;
 }
 .symbol {
   color: #ac86b7;
   font-weight: 700;
 }
+.news {
+  position: fixed;
+  top: 0;
+  right: -200rem;
+  font-size: 2rem;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-end;
+  animation: newsMove 20s linear infinite;
+  z-index: 100;
+}
+
+.stock-price {
+  display: flex;
+  align-items: center;
+  background-color: #131c19;
+}
+.stock-price li {
+  padding: 0 1rem;
+}
+.stock-price span {
+  color: #2cde6d;
+}
 
 @media (max-width: 80rem) {
   .search-fiald {
-    width: 70%;
+    width: 75%;
   }
   .list-group {
     font-size: 1.8rem;
@@ -131,5 +178,18 @@ a {
   }
   .links li span {
     display: none;
+  }
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .text em,
+  .text small {
+    display: none;
+  }
+}
+@keyframes newsMove {
+  100% {
+    transform: translateX(-200rem);
   }
 }

@@ -2,7 +2,9 @@ const result = document.querySelector(".list-group");
 const searchVal = document.querySelector(".search-fiald");
 const form = document.querySelector("#getNasdaq");
 const spinar = document.querySelector(".spinner-border");
+const newsPrice = document.querySelector(".stock-price");
 
+//serach company profile bt user click on option result
 let company = async (parmSymbol) => {
   try {
     const response = await fetch(
@@ -16,7 +18,21 @@ let company = async (parmSymbol) => {
     console.log(err);
   }
 };
-
+let news = async () => {
+  try {
+    const response = await fetch(
+      `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quotes/nyse`
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setNews(data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+news();
+//serach company bt user input
 let serach = async (quary) => {
   try {
     const response = await fetch(
@@ -97,4 +113,14 @@ function setElment(compData) {
   li.classList.add("list-group-item-action");
   // result.appendChild(li);
   return li;
+}
+
+function setNews(data) {
+  data.forEach((item, index) => {
+    if (item.price) {
+      const li = document.createElement("li");
+      li.innerHTML = `${item.symbol}<span>${item.price.toFixed(2)}$</span>`;
+      newsPrice.appendChild(li);
+    }
+  });
 }
