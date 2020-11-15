@@ -55,6 +55,10 @@ class SearchResult {
     this.cheackPrice(compData.profile.changesPercentage, spanTag);
     spanTag.innerHTML = `${compData.profile.changesPercentage}`;
     aTag.innerHTML = `${compData.profile.companyName} <strong>${compData.symbol}</strong>`;
+    aTag.innerHTML = aTag.innerHTML.replace(
+      this.searchVal.value,
+      `<span class="background">${this.searchVal.value}</span>`
+    );
     aTag.setAttribute("href", `./company.html?symbol=${compData.symbol}`);
     li.appendChild(compImage);
     li.appendChild(aTag);
