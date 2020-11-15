@@ -35,6 +35,7 @@ class SearchForm {
       "keypress",
       this.debounse(async (e) => {
         const data = await this.onSearch(e.target.value);
+        history.pushState(null, null, `?query=${this.searchVal.value}`);
         return dataChange(data);
       }, 1000)
     );
@@ -49,5 +50,18 @@ class SearchForm {
         fn(args);
       }, deley);
     };
+  }
+
+  onPageLoad() {
+    let parmSymbol = this.getUrlParameter("query");
+    if (parmSymbol) this.searchVal.value = parmSymbol;
+  }
+  getUrlParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+    var results = regex.exec(location.search);
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
 }

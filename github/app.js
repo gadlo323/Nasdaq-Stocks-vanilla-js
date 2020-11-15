@@ -7,10 +7,11 @@ const newsPrice = document.querySelector(".stock-price");
   marque.load();
   const formSearch = new SearchForm(form);
   const results = new SearchResult(result);
+  formSearch.onPageLoad();
   formSearch.onSubmit((companies) => {
     results.setResult(companies);
   });
-  formSearch.onChange((data) => {
-    results.setResult(data);
+  formSearch.onChange((dataChange) => {
+    results.setResult(dataChange);
   });
 })();
