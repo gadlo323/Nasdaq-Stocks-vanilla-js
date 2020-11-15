@@ -7,7 +7,7 @@ const description = document.querySelector(".description");
 const ceo = document.querySelector(".ceo");
 const wabCompany = document.querySelector(".wabCompany");
 const sector = document.querySelector(".sector");
-const spinar = document.querySelector(".spinner-border");
+const SpinnerTag = document.querySelector(".spinner-border");
 const ctx = document.querySelector("#myChart").getContext("2d");
 
 function getUrlParameter(name) {
@@ -32,7 +32,7 @@ let company = async () => {
   }
 };
 let stockHistory = async () => {
-  Spinar();
+  Spinner();
   try {
     const response = await fetch(
       `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${parmSymbol}?serietype=line`
@@ -111,10 +111,10 @@ function setChart(data) {
       },
     },
   });
-  Spinar();
+  Spinner();
 }
 
 //on or off spinar
-function Spinar() {
-  spinar.classList.toggle("active");
+function Spinner() {
+  SpinnerTag.classList.toggle("active");
 }

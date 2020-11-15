@@ -3,7 +3,7 @@ class Marquee {
     this.element = element;
   }
 
-  async news() {
+  async load() {
     try {
       const response = await fetch(
         `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/quotes/nyse`
