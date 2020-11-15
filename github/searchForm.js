@@ -29,4 +29,25 @@ class SearchForm {
       return companies(data);
     });
   }
+
+  onChange(dataChange) {
+    this.searchVal.addEventListener(
+      "keypress",
+      this.debounse(async (e) => {
+        const data = await this.onSearch(e.target.value);
+        return dataChange(data);
+      }, 1000)
+    );
+  }
+
+  // https://youtu.be/B1P3GFa7jVc
+  debounse(fn, deley) {
+    let timeoutID;
+    return function (args) {
+      if (timeoutID) clearTimeout(timeoutID);
+      timeoutID = setTimeout(() => {
+        fn(args);
+      }, deley);
+    };
+  }
 }

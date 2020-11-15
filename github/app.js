@@ -10,4 +10,7 @@ const newsPrice = document.querySelector(".stock-price");
   formSearch.onSubmit((companies) => {
     results.setResult(companies);
   });
+  formSearch.onChange((data) => {
+    results.setResult(data);
+  });
 })();
