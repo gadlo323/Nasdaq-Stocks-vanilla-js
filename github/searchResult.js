@@ -49,6 +49,7 @@ class SearchResult {
     const aTag = document.createElement("a");
     const compImage = document.createElement("img");
     const spanTag = document.createElement("span");
+    const btnCompare = document.createElement("button");
 
     compImage.src = compData.profile.image;
     compImage.alt = `${compData.profile.companyName} Logo`;
@@ -59,10 +60,16 @@ class SearchResult {
       this.searchVal.value,
       `<span class="background">${this.searchVal.value}</span>`
     );
+    btnCompare.setAttribute("id", compData.symbol);
+    btnCompare.setAttribute("type", "button");
+    btnCompare.setAttribute("onclick", "btnPresa(this);");
+    btnCompare.className = "btn btn-primary";
+    btnCompare.innerHTML = "Compare";
     aTag.setAttribute("href", `./company.html?symbol=${compData.symbol}`);
     li.appendChild(compImage);
     li.appendChild(aTag);
     li.appendChild(spanTag);
+    li.appendChild(btnCompare);
     li.classList.add("list-group-item-action");
     // result.appendChild(li);
     return li;

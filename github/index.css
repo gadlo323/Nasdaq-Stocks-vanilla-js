@@ -34,7 +34,7 @@ a {
   margin-top: 6rem;
 }
 .search-fiald {
-  width: 35%;
+  width: 42.7%;
   padding: 0.2rem 1rem;
   font-size: 2.5rem;
   border: none;
@@ -139,6 +139,17 @@ a {
   color: #ac86b7;
   font-weight: 700;
 }
+.btn.btn-primary {
+  font-size: 1.5rem;
+  float: right;
+  background-color: #ac86b7;
+  border: none;
+}
+.btn.btn-primary:hover {
+  font-size: 1.7rem;
+
+  background-color: #cc14cc;
+}
 .news {
   position: fixed;
   top: 0;
@@ -164,6 +175,16 @@ a {
 }
 .background {
   background-color: #fdf48d;
+}
+
+.form-check label {
+  font-size: 2rem;
+  padding: 0 2rem;
+}
+.form-check-input {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50% !important;
 }
 
 @media (max-width: 80rem) {

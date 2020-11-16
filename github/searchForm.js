@@ -56,6 +56,7 @@ class SearchForm {
     let parmSymbol = this.getUrlParameter("query");
     if (parmSymbol) this.searchVal.value = parmSymbol;
   }
+
   getUrlParameter(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");

@@ -15,3 +15,9 @@ const newsPrice = document.querySelector(".stock-price");
     results.setResult(dataChange);
   });
 })();
+
+let btnPresa = async (btn) => {
+  const results = new SearchResult(result);
+  const data = await results.company(btn.id);
+  console.log(data.profile);
+};
