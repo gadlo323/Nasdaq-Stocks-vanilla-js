@@ -4,7 +4,7 @@ class SearchResult {
     this.spinar = document.querySelector(".spinner-border");
     this.searchVal = document.querySelector(".search-fiald");
   }
-  //serach company profile bt user click on option result
+
   async company(parmSymbol) {
     try {
       const response = await fetch(
@@ -57,8 +57,8 @@ class SearchResult {
     spanTag.innerHTML = `${compData.profile.changesPercentage}`;
     aTag.innerHTML = `${compData.profile.companyName} <strong>${compData.symbol}</strong>`;
     aTag.innerHTML = aTag.innerHTML.replace(
-      this.searchVal.value,
-      `<span class="background">${this.searchVal.value}</span>`
+      this.searchVal.value.toUpperCase(),
+      `<span class="background">${this.searchVal.value.toUpperCase()}</span>`
     );
     btnCompare.setAttribute("id", compData.symbol);
     btnCompare.setAttribute("type", "button");

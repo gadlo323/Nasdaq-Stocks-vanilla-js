@@ -146,8 +146,7 @@ a {
   border: none;
 }
 .btn.btn-primary:hover {
-  font-size: 1.7rem;
-
+  text-transform: uppercase;
   background-color: #cc14cc;
 }
 .news {
@@ -175,16 +174,6 @@ a {
 }
 .background {
   background-color: #fdf48d;
-}
-
-.form-check label {
-  font-size: 2rem;
-  padding: 0 2rem;
-}
-.form-check-input {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50% !important;
 }
 
 @media (max-width: 80rem) {
