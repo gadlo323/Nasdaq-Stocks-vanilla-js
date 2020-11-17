@@ -1,6 +1,7 @@
 class CompanyInfo {
   constructor(container, symbol) {
     this.container = container;
+    this.symbol = symbol;
   }
   //search in the api by symbol
   async load() {
