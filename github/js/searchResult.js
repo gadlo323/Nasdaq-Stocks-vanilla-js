@@ -18,7 +18,6 @@ class SearchResult {
   }
   //show list to user
   async setResult(arr) {
-    this.createResults();
     let resultList = document.querySelector(".list-group");
     this.Spinner();
     let newarr = [];
@@ -66,7 +65,10 @@ class SearchResult {
     btnCompare.setAttribute("onclick", "btnPresa(this);");
     btnCompare.className = "btn btn-primary";
     btnCompare.innerHTML = "Compare";
-    aTag.setAttribute("href", `./company.html?symbol=${compData.symbol}`);
+    aTag.setAttribute(
+      "href",
+      `./Allpages/company.html?symbol=${compData.symbol}`
+    );
     li.appendChild(compImage);
     li.appendChild(aTag);
     li.appendChild(spanTag);

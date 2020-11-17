@@ -76,7 +76,7 @@ class SearchForm extends SearchResult {
     <div class="chose-compare d-flex flex-wrap">
         <ul class="compares d-flex flex-wrap">
         </ul>
-        <a href="comprison.html?symbols=" class="group-chosen">Compare<small
+        <a href="Allpages/comprison.html?symbols=" class="group-chosen">Compare<small
                 class="amount">0</small>Companies
         </a>
     </div>
