@@ -1,14 +1,13 @@
 class CompanyInfo {
   constructor(container, symbol) {
     this.container = container;
-    this.title = document.querySelector("title");
-    this.symbol = symbol;
   }
   //search in the api by symbol
   async load() {
+    const title = document.querySelector("title");
+    title.innerHTML += title;
     this.createPage();
     try {
-      this.title.innerHTML += this.symbol;
       const response = await fetch(
         `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${this.symbol}`
       );
