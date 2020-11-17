@@ -1,7 +1,8 @@
-class SearchForm {
-  constructor(form) {
+class SearchForm extends SearchResult {
+  constructor(form, results) {
+    super(results);
     this.form = form;
-    this.searchVal = document.querySelector(".search-fiald");
+    //this.searchVal = document.querySelector(".search-fiald");
   }
 
   //serach companys by user input
@@ -23,19 +24,22 @@ class SearchForm {
   }
 
   onSubmit(companies) {
-    this.form.addEventListener("submit", async (e) => {
+    let formID = document.querySelector("#getNasdaq");
+    let searchValue = document.querySelector(".search-fiald");
+    formID.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const data = await this.onSearch(this.searchVal.value);
+      const data = await this.onSearch(searchValue.value);
       return companies(data);
     });
   }
 
   onChange(dataChange) {
-    this.searchVal.addEventListener(
+    let searchValue = document.querySelector(".search-fiald");
+    searchValue.addEventListener(
       "keypress",
       this.debounse(async (e) => {
         const data = await this.onSearch(e.target.value);
-        history.pushState(null, null, `?query=${this.searchVal.value}`);
+        history.pushState(null, null, `?query=${searchValue.value}`);
         return dataChange(data);
       }, 1000)
     );
@@ -53,8 +57,10 @@ class SearchForm {
   }
 
   onPageLoad() {
+    this.createForm();
+    let searchValue = document.querySelector(".search-fiald");
     let parmSymbol = this.getUrlParameter("query");
-    if (parmSymbol) this.searchVal.value = parmSymbol;
+    if (parmSymbol) searchValue.value = parmSymbol;
   }
 
   getUrlParameter(name) {
@@ -64,5 +70,28 @@ class SearchForm {
     return results === null
       ? ""
       : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  createForm() {
+    this.form.innerHTML += `  <div class="col-sm-12 d-flex flex-column content">
+    <div class="chose-compare d-flex flex-wrap">
+        <ul class="compares d-flex flex-wrap">
+        </ul>
+        <a href="comprison.html?symbols=" class="group-chosen">Compare<small
+                class="amount">0</small>Companies
+        </a>
+    </div>
+    <div class="search-bar">
+        <form id="getNasdaq">
+            <input class="search-fiald" type="search" placeholder="serach" required>
+            <button type="submit" id="btn-serach"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>`;
+    this.createResults();
+  }
+
+  //Inherits the function from the class searchResult
+  createResults() {
+    super.createResults();
   }
 }

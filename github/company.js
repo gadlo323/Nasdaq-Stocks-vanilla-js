@@ -1,3 +1,5 @@
+const container = document.querySelector(".container");
+
 function getUrlParameter(name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -8,6 +10,6 @@ function getUrlParameter(name) {
 }
 (function () {
   let parmSymbol = getUrlParameter("symbol");
-  const compInfo = new CompanyInfo(parmSymbol);
+  const compInfo = new CompanyInfo(container, parmSymbol);
   compInfo.load();
 })();

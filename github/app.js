@@ -1,12 +1,12 @@
-const result = document.querySelector(".list-group");
-const form = document.querySelector("#getNasdaq");
-const newsPrice = document.querySelector(".stock-price");
-
+const resultTag = document.querySelector(".results");
+const formTag = document.querySelector(".form");
+const MarqueeTag = document.querySelector(".Marquee");
+const footer = document.querySelector(".foot");
 (async function () {
-  const marque = new Marquee(newsPrice);
+  const marque = new Marquee(MarqueeTag, footer);
   marque.load();
-  const formSearch = new SearchForm(form);
-  const results = new SearchResult(result);
+  const formSearch = new SearchForm(formTag, resultTag);
+  const results = new SearchResult(resultTag);
   formSearch.onPageLoad();
   formSearch.onSubmit((companies) => {
     results.setResult(companies);
@@ -17,7 +17,11 @@ const newsPrice = document.querySelector(".stock-price");
 })();
 
 let btnPresa = async (btn) => {
-  const results = new SearchResult(result);
-  const data = await results.company(btn.id);
-  console.log(data.profile);
+  const compare = new Comparison();
+  compare.comparClick(btn);
+};
+
+let closeClick = (compBtn) => {
+  const compare = new Comparison();
+  compare.closeClick(compBtn);
 };

@@ -26,7 +26,7 @@ li {
   list-style: none;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   padding: 1rem;
 }
 .content {
@@ -92,7 +92,6 @@ a {
   color: #bd3b70;
 }
 .list-group li:hover a {
-  font-size: 1.98rem;
   color: #cc14cc;
 }
 .right-side {
@@ -175,19 +174,27 @@ a {
 .background {
   background-color: #fdf48d;
 }
+.group-chosen {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+.amount {
+  font-size: 2.7rem;
+  padding: 0 2rem;
+}
 
 @media (max-width: 80rem) {
   .search-fiald {
     width: 75%;
   }
   .list-group {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .list-group li:hover a {
-    font-size: 1.8rem;
+    font-size: 1.55rem;
   }
   .result-list {
-    text-align: center;
+    text-align: left;
   }
   .links li span {
     display: none;
@@ -199,6 +206,10 @@ a {
   .text em,
   .text small {
     display: none;
+  }
+  .btn.btn-primary:hover {
+    text-transform: none;
+    background-color: #cc14cc;
   }
 }
 @keyframes newsMove {

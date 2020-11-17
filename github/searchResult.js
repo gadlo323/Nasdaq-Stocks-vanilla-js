@@ -1,8 +1,6 @@
 class SearchResult {
   constructor(results) {
     this.results = results;
-    this.spinar = document.querySelector(".spinner-border");
-    this.searchVal = document.querySelector(".search-fiald");
   }
 
   async company(parmSymbol) {
@@ -20,22 +18,24 @@ class SearchResult {
   }
   //show list to user
   async setResult(arr) {
-    this.results.innerHTML = "";
+    this.createResults();
+    let resultList = document.querySelector(".list-group");
     this.Spinner();
     let newarr = [];
     if (arr.length > 0) {
       for (let item of arr) {
         const compData = await this.company(item.symbol);
-
-        if (Object.keys(compData).length > 0 && compData != "undefined") {
-          newarr.push(this.setElment(compData));
+        if (compData != null) {
+          if (Object.keys(compData).length > 0) {
+            newarr.push(this.setElment(compData));
+          }
         }
       }
       newarr.forEach((item) => {
-        this.results.appendChild(item);
+        resultList.appendChild(item);
       });
     } else {
-      this.results.innerHTML += `
+      resultList.innerHTML += `
       <li class="list-group-item-action">
       No results found &#129335; !
       </li>`;
@@ -45,6 +45,7 @@ class SearchResult {
 
   //create elemenr li forEach result option
   setElment(compData) {
+    let searchValue = document.querySelector(".search-fiald");
     const li = document.createElement("li");
     const aTag = document.createElement("a");
     const compImage = document.createElement("img");
@@ -57,8 +58,8 @@ class SearchResult {
     spanTag.innerHTML = `${compData.profile.changesPercentage}`;
     aTag.innerHTML = `${compData.profile.companyName} <strong>${compData.symbol}</strong>`;
     aTag.innerHTML = aTag.innerHTML.replace(
-      this.searchVal.value.toUpperCase(),
-      `<span class="background">${this.searchVal.value.toUpperCase()}</span>`
+      searchValue.value.toUpperCase(),
+      `<span class="background">${searchValue.value.toUpperCase()}</span>`
     );
     btnCompare.setAttribute("id", compData.symbol);
     btnCompare.setAttribute("type", "button");
@@ -88,6 +89,30 @@ class SearchResult {
 
   //on or off spinar
   Spinner() {
-    this.spinar.classList.toggle("active");
+    let spinner = document.querySelector(".spinner-border");
+
+    spinner.classList.toggle("active");
+  }
+  createResults() {
+    this.results.innerHTML += ` <div class="col-sm-6 result">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border active" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="result-list">
+        <ul class="list-group list-group-flush">
+
+        </ul>
+    </div>
+</div>
+<div class="right-side col-sm-6 d-flex flex-column align-items-center">
+    <div class="text d-flex flex-column align-items-center">
+        <h1>Search Nasdaq Stocks</h1>
+        <em>"Rule No.1: Never lose money. Rule No.2: Never forget rule No.1"</em>
+        <small>Warren Buffett</small>
+    </div>
+    <img class="img-side" src="img//imageedit_1_3150470391.png" alt="">
+</div>`;
   }
 }

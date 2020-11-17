@@ -1,20 +1,12 @@
 class CompanyInfo {
-  constructor(symbol) {
+  constructor(container, symbol) {
+    this.container = container;
     this.title = document.querySelector("title");
     this.symbol = symbol;
-    this.imgTop = document.querySelector(".card-img-top");
-    this.cardTitle = document.querySelector(".card-title");
-    this.price = document.querySelector(".price");
-    this.Percentage = document.querySelector(".changesPercentage");
-    this.description = document.querySelector(".description");
-    this.ceo = document.querySelector(".ceo");
-    this.wabCompany = document.querySelector(".wabCompany");
-    this.sector = document.querySelector(".sector");
-    this.SpinnerTag = document.querySelector(".spinner-border");
-    this.ctx = document.querySelector("#myChart").getContext("2d");
   }
   //search in the api by symbol
   async load() {
+    this.createPage();
     try {
       this.title.innerHTML += this.symbol;
       const response = await fetch(
@@ -44,31 +36,42 @@ class CompanyInfo {
     }
   }
   setData(obj) {
-    this.imgTop.setAttribute("src", obj.profile.image);
-    this.cardTitle.innerHTML = `${obj.profile.companyName}(${obj.symbol})`;
+    const imgTop = document.querySelector(".card-img-top");
+    const cardTitle = document.querySelector(".card-title");
+    const price = document.querySelector(".price");
+    const Percentage = document.querySelector(".changesPercentage");
+    const description = document.querySelector(".description");
+    const ceo = document.querySelector(".ceo");
+    const wabCompany = document.querySelector(".wabCompany");
+    const sector = document.querySelector(".sector");
+
+    imgTop.setAttribute("src", obj.profile.image);
+    cardTitle.innerHTML = `${obj.profile.companyName}(${obj.symbol})`;
     this.cheackPrice(obj.profile.changesPercentage);
-    this.price.innerHTML = `Stock price :${obj.profile.price.toFixed(2)}$`;
-    this.Percentage.innerHTML = obj.profile.changesPercentage;
-    this.description.innerHTML = obj.profile.description;
-    this.sector.innerHTML = obj.profile.sector;
-    this.ceo.innerHTML =
+    price.innerHTML = `Stock price :${obj.profile.price.toFixed(2)}$`;
+    Percentage.innerHTML = obj.profile.changesPercentage;
+    description.innerHTML = obj.profile.description;
+    sector.innerHTML = obj.profile.sector;
+    ceo.innerHTML =
       obj.profile.ceo !== "None"
         ? " C.E.O " + obj.profile.ceo
         : "C.E.O " + "UNKNOWN";
-    this.wabCompany.href = obj.profile.website;
+    wabCompany.href = obj.profile.website;
     this.stockHistory();
   }
 
   cheackPrice(Percent) {
+    const Percentage = document.querySelector(".changesPercentage");
     Percent.includes("+")
-      ? this.Percentage.classList.add("price-green")
-      : this.Percentage.classList.add("price-red");
+      ? Percentage.classList.add("price-green")
+      : Percentage.classList.add("price-red");
   }
 
   setChart(data) {
+    const ctx = document.querySelector("#myChart").getContext("2d");
     const lables = data.map((item) => item.date);
     const points = data.map((item) => item.close);
-    const myChart = new Chart(this.ctx, {
+    const myChart = new Chart(ctx, {
       type: "line",
       data: {
         labels: lables,
@@ -112,6 +115,30 @@ class CompanyInfo {
 
   //on or off spinar
   Spinner() {
-    this.SpinnerTag.classList.toggle("active");
+    let spinner = document.querySelector(".spinner-border");
+    spinner.classList.toggle("active");
+  }
+
+  createPage() {
+    this.container.innerHTML += `<div class="card">
+    <div class="card-body">
+        <div class="top">
+            <img src="..." class="card-img-top" alt="...">
+            <h5 class="card-title"></h5>
+            <h4 class="ceo"></h4>
+        </div>
+        <p class="card-text"><small class="text-muted price"></small><small class="changesPercentage"></small>
+        </p>
+        <strong class="sector"></strong>
+        <p class="card-text description"></p>
+        <a class=wabCompany href="" target="_blank">Vist Company Wabsite &#127760;</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border active" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <canvas id="myChart" width="400" height="300"></canvas>
+</div>`;
   }
 }
