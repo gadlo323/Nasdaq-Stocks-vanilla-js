@@ -211,6 +211,9 @@ a {
     text-transform: none;
     background-color: #cc14cc;
   }
+  #btn-serach {
+    padding: 1rem;
+  }
 }
 @keyframes newsMove {
   100% {

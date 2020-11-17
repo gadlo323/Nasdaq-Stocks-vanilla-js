@@ -79,7 +79,7 @@ class Comparison {
             </p>
             <strong class="sector">${item.profile.sector}</strong>
             <p class="card-text description">${item.profile.description}</p>
-            <a class=wabCompany href="${item.profile.website}" target="_blank">Vist Company Wabsite &#127760;</a>
+            <a class=wabCompany href="${item.profile.website}" target="_blank">Visit Company Website &#127760;</a>
         </div>
        
         <canvas id="${item.symbol}" width="400" height="300"></canvas>

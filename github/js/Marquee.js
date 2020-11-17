@@ -50,7 +50,7 @@ class Marquee {
     <div class="col-sm-6">
         <ul class="links d-flex justify-content-between">
             <li> <span>Search Nasdaq Stocks</span> </li>
-            <li><a href="#"><i class="fa fa-github "></i></a></li>
+            <li><a href="https://github.com/gadlo323"><i class="fa fa-github "></i></a></li>
             <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
         </ul>
     </div>

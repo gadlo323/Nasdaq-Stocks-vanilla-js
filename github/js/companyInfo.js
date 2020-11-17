@@ -14,6 +14,7 @@ class CompanyInfo {
       );
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         this.setData(data);
       }
     } catch (err) {
@@ -131,7 +132,7 @@ class CompanyInfo {
         </p>
         <strong class="sector"></strong>
         <p class="card-text description"></p>
-        <a class=wabCompany href="" target="_blank">Vist Company Wabsite &#127760;</a>
+        <a class=wabCompany href="" target="_blank">Visit Company Website &#127760;</a>
     </div>
     <div class="d-flex justify-content-center">
         <div class="spinner-border active" role="status">

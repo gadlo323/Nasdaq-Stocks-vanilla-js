@@ -2,7 +2,6 @@ class SearchForm extends SearchResult {
   constructor(form, results) {
     super(results);
     this.form = form;
-    //this.searchVal = document.querySelector(".search-fiald");
   }
 
   //serach companys by user input
@@ -24,20 +23,24 @@ class SearchForm extends SearchResult {
   }
 
   onSubmit(companies) {
+    let listResults = document.querySelector(".list-group");
     let formID = document.querySelector("#getNasdaq");
     let searchValue = document.querySelector(".search-fiald");
     formID.addEventListener("submit", async (e) => {
       e.preventDefault();
+      listResults.innerHTML = " ";
       const data = await this.onSearch(searchValue.value);
       return companies(data);
     });
   }
 
   onChange(dataChange) {
+    let listResults = document.querySelector(".list-group");
     let searchValue = document.querySelector(".search-fiald");
     searchValue.addEventListener(
       "keypress",
       this.debounse(async (e) => {
+        listResults.innerHTML = " ";
         const data = await this.onSearch(e.target.value);
         history.pushState(null, null, `?query=${searchValue.value}`);
         return dataChange(data);
