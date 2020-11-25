@@ -1,5 +1,5 @@
 class SearchForm extends SearchResult {
-  constructor(form, results) {
+  constructor(form) {
     super(results);
     this.form = form;
   }
@@ -42,6 +42,7 @@ class SearchForm extends SearchResult {
       this.debounse(async (e) => {
         listResults.innerHTML = " ";
         const data = await this.onSearch(e.target.value);
+        //add the serachValue to the url..
         history.pushState(null, null, `?query=${searchValue.value}`);
         return dataChange(data);
       }, 1000)
@@ -75,22 +76,50 @@ class SearchForm extends SearchResult {
       : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
   createForm() {
-    this.form.innerHTML += `  <div class="col-sm-12 d-flex flex-column content">
-    <div class="chose-compare d-flex flex-wrap">
-        <ul class="compares d-flex flex-wrap">
-        </ul>
-        <a href="Allpages/comprison.html?symbols=" class="group-chosen">Compare<small
-                class="amount">0</small>Companies
-        </a>
-    </div>
-    <div class="search-bar">
-        <form id="getNasdaq">
-            <input class="search-fiald" type="search" placeholder="serach" required>
-            <button type="submit" id="btn-serach"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-</div>`;
+    let contaentDiv = createElement("div", "content", null, [
+      "col-sm-12",
+      "d-flex",
+      "flex-column",
+    ]);
+    this.createTopForm(contaentDiv);
+    this.createBottomForm(contaentDiv);
     this.createResults();
+  }
+
+  //create the bootom part in the form Div1
+  createBottomForm(contaentDiv) {
+    let serachDiv = createElement("div", "search-bar", null, null);
+    appandElements(contaentDiv, serachDiv);
+    let formTag = createElement("form", null, "getNasdaq", null);
+    appandElements(serachDiv, formTag);
+    let inputTag = createElement("input", "search-fiald");
+    inputTag.setAttribute("placeholder", "serach");
+    inputTag.setAttribute("required", true);
+    appandElements(formTag, inputTag);
+    let btnSearch = createElement("button", null, "btn-serach", null);
+    btnSearch.setAttribute("type", "submit");
+    let iTag = createElement("i", "fa", null, ["fa-search"]);
+    appandElements(btnSearch, iTag);
+    appandElements(formTag, btnSearch);
+  }
+  //create the top part in the form Div2
+  createTopForm(contaentDiv) {
+    appandElements(this.form, contaentDiv);
+    let compareDiv = createElement("div", "chose-compare", null, [
+      "d-flex",
+      "flex-wrap",
+    ]);
+    appandElements(contaentDiv, compareDiv);
+    let ulTag = createElement("ul", "compares", null, ["d-flex", "flex-wrap"]);
+    appandElements(compareDiv, ulTag);
+    let aTag = createElement("a", "group-chosen", null, null);
+    aTag.href = "Allpages/comprison.html?symbols=";
+    aTag.textContent = "Compare";
+    appandElements(compareDiv, aTag);
+    let smallTag = createElement("small", "amount", null, null);
+    smallTag.textContent = " 0 ";
+    appandElements(aTag, smallTag);
+    aTag.insertAdjacentText("beforeend", "Companies");
   }
 
   //Inherits the function from the class searchResult

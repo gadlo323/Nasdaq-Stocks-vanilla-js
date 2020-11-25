@@ -1,4 +1,4 @@
-const box = document.querySelector(".box");
+const box = document.querySelector(".container-fluid");
 
 function getUrlParameter(name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

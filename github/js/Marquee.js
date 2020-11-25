@@ -1,7 +1,7 @@
 class Marquee {
   constructor(element, footer) {
     this.element = element;
-    this.footer = footer;
+    this.footer = document.getElementById("footer");
   }
 
   async load() {
@@ -29,31 +29,64 @@ class Marquee {
     for (let item of data) {
       if (item.price)
         document
-          .querySelector(".stock-price")
+          .getElementById("stock")
           .appendChild(this.createElement(item.symbol, item.price));
     }
   }
 
   createMarquee() {
-    this.element.innerHTML += ` <div class="news col-sm-12">
-    <ul class="stock-price">
-
-    </ul>
-</div>`;
+    let divMarquee = createElement("div", "news", null, ["col-sm-12"]);
+    let ulTag = createElement("ul", "stock-price", "stock", null);
+    appandElements(divMarquee, ulTag);
+    appandElements(this.element, divMarquee);
     this.createFooter();
   }
   createFooter() {
-    this.footer.innerHTML += ` <footer class="col-sm-12 footer">
-    <div class="col-sm-6">
-        <h2>Isayas Gadlo &copy; 2020</h2>
-    </div>
-    <div class="col-sm-6">
-        <ul class="links d-flex justify-content-between">
-            <li> <span>Search Nasdaq Stocks</span> </li>
-            <li><a href="https://github.com/gadlo323"><i class="fa fa-github "></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        </ul>
-    </div>
-</footer>`;
+    let divFooter = createElement("footer", "col-sm-12", null, ["footer"]);
+    appandElements(divFooter, this.leftFoot());
+    appandElements(divFooter, this.rightFoot());
+    appandElements(this.footer, divFooter);
+  }
+
+  leftFoot() {
+    let divCol6 = createElement("div", "col-sm-6", null, null);
+    let h2Tag = createElement("h2", null, null, null);
+    h2Tag.textContent = "Isayas Gadlo &copy; 2020";
+    appandElements(divCol6, h2Tag);
+    return divCol6;
+  }
+
+  rightFoot(liItems) {
+    let divBottom = createElement("div", "col-sm-6", null, null);
+    let ulTag = createElement("ul", "links", null, [
+      "d-flex",
+      "justify-content-between",
+    ]);
+    appandElements(divBottom, this.createLi(ulTag));
+    return divBottom;
+  }
+
+  createLi(ulTag) {
+    let liTag1 = createElement("li", null, null, null);
+    let spanTag = createElement("span", null, null, null);
+    appandElements(liTag1, spanTag);
+    appandElements(ulTag, liTag1);
+
+    let liTag2 = createElement("li", null, null, null);
+    let aTag = createElement("a", null, null, null);
+    aTag.href = "https://github.com/gadlo323";
+    let iTag = createElement("i", "fa", null, ["fa-github"]);
+    appandElements(liTag2, aTag);
+    appandElements(liTag2, iTag);
+    appandElements(ulTag, liTag2);
+
+    let liTag3 = createElement("li", null, null, null);
+    let aTag3 = createElement("a", null, null, null);
+    aTag3.href = "https://github.com/gadlo323";
+    let iTag3 = createElement("i", "fa", null, ["fa-github"]);
+    appandElements(liTag3, aTag3);
+    appandElements(liTag3, iTag3);
+    appandElements(ulTag, liTag3);
+    return ulTag;
   }
 }

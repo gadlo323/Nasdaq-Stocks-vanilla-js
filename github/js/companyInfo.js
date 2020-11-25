@@ -14,8 +14,7 @@ class CompanyInfo {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        this.setData(data);
+        this.setCreate(data);
       }
     } catch (err) {
       console.log(err);
@@ -36,16 +35,41 @@ class CompanyInfo {
       console.log(err);
     }
   }
-  setData(obj) {
+  // Creating elements for the company profile
+  setCreate(obj) {
     const imgTop = document.querySelector(".card-img-top");
     const cardTitle = document.querySelector(".card-title");
     const price = document.querySelector(".price");
     const Percentage = document.querySelector(".changesPercentage");
     const description = document.querySelector(".description");
     const ceo = document.querySelector(".ceo");
-    const wabCompany = document.querySelector(".wabCompany");
+    const wabCompany = document.querySelector(".wab-company");
     const sector = document.querySelector(".sector");
 
+    this.setData(
+      imgTop,
+      cardTitle,
+      price,
+      Percentage,
+      description,
+      ceo,
+      wabCompany,
+      sector,
+      obj
+    );
+  }
+  // Updates information into the created elements
+  setData(
+    imgTop,
+    cardTitle,
+    price,
+    Percentage,
+    description,
+    ceo,
+    wabCompany,
+    sector,
+    obj
+  ) {
     imgTop.setAttribute("src", obj.profile.image);
     cardTitle.innerHTML = `${obj.profile.companyName}(${obj.symbol})`;
     this.cheackPrice(obj.profile.changesPercentage);
@@ -132,7 +156,7 @@ class CompanyInfo {
         </p>
         <strong class="sector"></strong>
         <p class="card-text description"></p>
-        <a class=wabCompany href="" target="_blank">Visit Company Website &#127760;</a>
+        <a class="wab-company" href="" target="_blank">Visit Company Website &#127760;</a>
     </div>
     <div class="d-flex justify-content-center">
         <div class="spinner-border active" role="status">

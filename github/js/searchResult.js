@@ -42,7 +42,7 @@ class SearchResult {
     this.Spinner();
   }
 
-  //create elemenr li forEach result option
+  //create elemens li forEach result option
   setElment(compData) {
     let searchValue = document.querySelector(".search-fiald");
     const li = document.createElement("li");
@@ -51,6 +51,26 @@ class SearchResult {
     const spanTag = document.createElement("span");
     const btnCompare = document.createElement("button");
 
+    return this.DataToElemeant(
+      searchValue,
+      li,
+      aTag,
+      compImage,
+      spanTag,
+      btnCompare,
+      compData
+    );
+  }
+  //set the data inside the html Elements
+  DataToElemeant(
+    searchValue,
+    li,
+    aTag,
+    compImage,
+    spanTag,
+    btnCompare,
+    compData
+  ) {
     compImage.src = compData.profile.image;
     compImage.alt = `${compData.profile.companyName} Logo`;
     this.cheackPrice(compData.profile.changesPercentage, spanTag);

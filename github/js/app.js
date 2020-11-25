@@ -1,20 +1,14 @@
-const resultTag = document.querySelector(".results");
-const formTag = document.querySelector(".form");
-const MarqueeTag = document.querySelector(".Marquee");
-const footer = document.querySelector(".foot");
-(async function () {
-  const marque = new Marquee(MarqueeTag, footer);
-  marque.load();
-  const formSearch = new SearchForm(formTag, resultTag);
-  const results = new SearchResult(resultTag);
-  formSearch.onPageLoad();
-  formSearch.onSubmit((companies) => {
-    results.setResult(companies);
-  });
-  formSearch.onChange((dataChange) => {
-    results.setResult(dataChange);
-  });
-})();
+const appandElements = (father, son) => {
+  father.appendChild(son);
+};
+
+const createElement = (elementType, classname, id, classesToAdd) => {
+  const element = document.createElement(elementType);
+  if (id) element.setAttribute("id", id);
+  element.className = classname;
+  if (classesToAdd) element.classList.add(...classesToAdd);
+  return element;
+};
 
 let btnPresa = async (btn) => {
   const compare = new Comparison();
