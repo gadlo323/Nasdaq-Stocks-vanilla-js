@@ -184,6 +184,9 @@ a {
 }
 
 @media (max-width: 80rem) {
+  .img-side {
+   display: none;
+  }
   .search-fiald {
     width: 75%;
   }
@@ -202,6 +205,9 @@ a {
   .main {
     display: flex;
     flex-direction: column-reverse;
+  }
+  .right-side h1 {
+    display: none;
   }
   .text em,
   .text small {

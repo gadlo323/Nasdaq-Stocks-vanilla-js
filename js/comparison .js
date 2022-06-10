@@ -32,7 +32,7 @@ class Comparison {
     }
   }
   comparClick(btn) {
-    const amount = document.querySelector(".amount");
+    let amount = document.querySelector(".amount");
     const btnCompare = document.createElement("button");
     btnCompare.innerHTML = btn.id;
     btnCompare.className = "btn btn-primary";
@@ -49,9 +49,10 @@ class Comparison {
   }
 
   closeClick(btn) {
+    let amount = document.querySelector(".amount");
     let symbol = btn.childNodes[0].innerText;
     this.compares.removeChild(btn);
-    this.amount.innerHTML = --Comparison.counter;
+    amount.innerText = --Comparison.counter;
 
     this.chosen.href = this.chosen.href.replace(symbol + ",", "");
   }

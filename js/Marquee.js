@@ -60,32 +60,27 @@ class Marquee {
     let divBottom = createElement("div", "col-sm-6", null, null);
     let ulTag = createElement("ul", "links", null, [
       "d-flex",
-      "justify-content-between",
+      "justify-content-around",
     ]);
     appandElements(divBottom, this.createLi(ulTag));
     return divBottom;
   }
 
   createLi(ulTag) {
-    let liTag1 = createElement("li", null, null, null);
-    let spanTag = createElement("span", null, null, null);
-    appandElements(liTag1, spanTag);
-    appandElements(ulTag, liTag1);
-
     let liTag2 = createElement("li", null, null, null);
     let aTag = createElement("a", null, null, null);
     aTag.href = "https://github.com/gadlo323";
     let iTag = createElement("i", "fa", null, ["fa-github"]);
     appandElements(liTag2, aTag);
-    appandElements(liTag2, iTag);
+    appandElements(aTag, iTag);
     appandElements(ulTag, liTag2);
 
     let liTag3 = createElement("li", null, null, null);
     let aTag3 = createElement("a", null, null, null);
-    aTag3.href = "https://github.com/gadlo323";
-    let iTag3 = createElement("i", "fa", null, ["fa-github"]);
+    aTag3.href = "https://www.linkedin.com/in/gadalo/";
+    let iTag3 = createElement("i", "fa", null, ["fa-linkedin"]);
     appandElements(liTag3, aTag3);
-    appandElements(liTag3, iTag3);
+    appandElements(aTag3, iTag3);
     appandElements(ulTag, liTag3);
     return ulTag;
   }
